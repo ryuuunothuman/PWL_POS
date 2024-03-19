@@ -14,11 +14,13 @@ class KategoriSeeder extends Seeder
     public function run(): void
     {
         $data = [];
-        $kategoriNames = ['jeans', 't-shirt', 'hoodie', 'accessories', 'boxer'];
-        for ($i = 0; $i < 5; $i++) {
+        $kategoriNames = ['Cemilan', 'Makanan Ringan'];
+        $kategoriKodes = ['CML', 'MNR'];
+        for ($i = 0; $i < 2; $i++) {
             $data[] = [
-                'kategori_kode' => 'AOC' . $i + 1,
+                'kategori_kode' => $kategoriKodes[$i],
                 'kategori_nama' => $kategoriNames[$i],
+                'created_at' => now(),
             ];
         }
         DB::table('m_kategori')->insert($data);
