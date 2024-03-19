@@ -44,3 +44,6 @@ Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan'])->na
 
 Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('user.hapus');
 
+Route::get('/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+Route::put('/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+
