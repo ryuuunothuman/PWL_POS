@@ -46,4 +46,5 @@ Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('user.hap
 
 Route::get('/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
 Route::put('/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+Route::get('/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.delete');
 
