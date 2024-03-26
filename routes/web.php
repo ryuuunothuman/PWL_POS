@@ -51,3 +51,4 @@ Route::get('/delete/{id}', [KategoriController::class, 'destroy'])->name('katego
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::get('/level/create', [LevelController::class, 'create'])->name('level.create');
 
+
