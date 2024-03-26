@@ -322,9 +322,20 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
+        ['header' => 'KATEGORI'],
         [
             'text' => 'Manage Kategori',
             'url' => 'kategori',
+            'icon' => 'far fa-fw fa-folder',
+        ],
+        [
+            'text' => 'Manage User',
+            'url' => 'user',
+            'icon' => 'far fa-fw fa-folder',
+        ],
+        [
+            'text' => 'Manage Level',
+            'url' => 'level',
             'icon' => 'far fa-fw fa-folder',
         ],
         ['header' => 'account_settings'],

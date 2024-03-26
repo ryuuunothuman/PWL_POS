@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UserDataTable;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // public function index()
-    // {        
-    //     $user = UserModel::all();
-    //     return view('user', ['data' => $user]);
-    // }
+    public function index(UserDataTable $dataTable)
+    {        
+        return $dataTable->render('user.index');
+    }
 
     public function tambah()
     {
@@ -59,9 +59,8 @@ class UserController extends Controller
         return redirect('/user');
     }
 
-    public function index()
+    public function create()
     {
-        $user = UserModel::with('level')->get();
-        return view('user', ['data' => $user]);
+        return view('user.create');
     }
 }

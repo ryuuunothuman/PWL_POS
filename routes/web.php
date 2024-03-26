@@ -48,3 +48,6 @@ Route::get('/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.ed
 Route::put('/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
 Route::get('/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.delete');
 
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::get('/level/create', [LevelController::class, 'create'])->name('level.create');
+
