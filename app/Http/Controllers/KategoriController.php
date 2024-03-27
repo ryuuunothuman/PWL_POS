@@ -27,8 +27,11 @@ class KategoriController extends Controller
 
         $validated = $request->safe()->only(['kategori_kode', 'kategori_nama']);
 
-        // KategoriModel::create($validated);
-
+        KategoriModel::create([
+            'kategori_kode' => $validated['kategori_kode'],
+            'kategori_nama' => $validated['kategori_nama'],
+        ]);
+        
         return redirect('/kategori');
     }
 

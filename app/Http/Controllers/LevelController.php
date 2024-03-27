@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\LevelDataTable;
 use App\Http\Requests\LevelRequest;
+use App\Models\LevelModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,6 +25,11 @@ class LevelController extends Controller
         $validated = $request->validated();
 
         $validated = $request->safe()->only(['level_kode', 'level_nama']);
+
+        LevelModel::create([
+            'level_kode' => $validated['level_kode'],
+            'level_nama' => $validated['level_nama'],
+        ]);
 
         return redirect('/level');
     }

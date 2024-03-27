@@ -71,7 +71,14 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-        $validated = $request->safe()->only(['level_id', 'username', 'name', 'password']);
+        $validated = $request->safe()->only(['username', 'nama', 'password', 'level_id']);
+
+        UserModel::create([
+            'username' => $validated['username'],
+            'nama' => $validated['nama'],
+            'password' => Hash::make($validated['password']),
+            'level_id' => $validated['level_id'],
+        ]);
 
         return redirect('/user');
     }

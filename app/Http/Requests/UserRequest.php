@@ -22,10 +22,10 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'level_id' => 'required',
             'username' => 'bail|unique:m_user|required',
             'nama' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'level_id' => 'required'
         ];
     }
 }
