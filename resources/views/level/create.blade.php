@@ -3,7 +3,7 @@
 {{-- Customize layout sections  --}}
 @section('subtitle', 'Level')
 @section('content_header_title', 'Level')
-@section('content_header_subtitle', 'Tambah')
+@section('content_header_subtitle', 'Create')
 
 {{-- Content body:main page content  --}}
 @section('content')
@@ -13,16 +13,24 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form>
+        <form method="post" action="../level">
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputPassword1">Level Kode</label>
-                    <input type="Number" class="form-control" id="exampleInputPassword1" placeholder="Input Level Kode">
+                    <input type="text" name="level_kode" class="form-control @error('level_kode') is-invalid @enderror" id="exampleInputPassword1" placeholder="Input Level Kode">
+
+                    @error('level_kode')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Level Nama</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Input level Nama">
+                    <input type="text" name="level_nama" class="form-control @error('level_nama') is-invalid @enderror" id="exampleInputPassword1" placeholder="Input level Nama">
                 </div>
+                
+                @error('level_nama')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>

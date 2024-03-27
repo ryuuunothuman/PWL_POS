@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\UserDataTable;
+use App\Http\Requests\UserRequest;
 use App\Models\UserModel;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -59,8 +62,17 @@ class UserController extends Controller
         return redirect('/user');
     }
 
-    public function create()
+    public function create(): View
     {
         return view('user.create');
+    }
+
+    public function store(UserRequest $request): RedirectResponse
+    {
+        $validated = $request->validated();
+
+        $validated = $request->safe()->only(['level_id', 'username', 'name', 'password']);
+
+        return redirect('/user');
     }
 }

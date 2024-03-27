@@ -24,11 +24,11 @@
                         @enderror                    
                     <div class="form-group">
                         <label for="kategori_nama">Nama Kategori</label>
-                        <input type="text" class="form-control" id="kategori_nama" name="kategori_nama" placeholder="">
+                        <input type="text" class="form-control @error('kategori_nama') is-invalid @enderror" id="kategori_nama" name="kategori_nama" placeholder="">
                     </div>
-                    {{-- @error('kategori_nama')
+                    @error('kategori_nama')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
-                        @enderror  --}}
+                        @enderror 
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
