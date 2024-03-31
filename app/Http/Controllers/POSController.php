@@ -35,6 +35,7 @@ class POSController extends Controller
             'user_id' => 'max 20',
             'username' => 'required',
             'nama' => 'required',
+            'level_id' => 'bail|exists:m_level|required'
         ]);
 
 
@@ -49,7 +50,7 @@ class POSController extends Controller
      */
     public function show(string $id): View
     {
-        $useri = m_user::findOrFail($id);
+        $useri = m_user::findOrFail($id)->load('level');
         return view('m_user.show', compact('useri'));
     }
 
@@ -70,7 +71,8 @@ class POSController extends Controller
         $request->validate([
             'username' => 'required',
             'nama' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'level_id' => 'bail|exists:m_level|required'
         ]);
 
         m_user::find($id)->update($request->all());
