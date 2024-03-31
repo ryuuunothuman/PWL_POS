@@ -1,57 +1,66 @@
-@extends('m_user/template')
+@extends('layouts.app')
+
+@section('subtitle', 'M_User')
+@section('content_header_title', 'M_User')
+@section('content_header_subtitle', 'Create')
 
 @section('content')
-    <div class="row mt-5 mb-5">
-        <div class="col-lg-12 margin-tb">
-            <div class="float-left">
-                <h2>Membuat Daftar User</h2>
-            </div>
-            <div class="float-right">
-                <a class="btn btn-secondary" href="{{ route('m_user.index') }}"> Kembali</a>
-            </div>
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Input User</h3>
         </div>
     </div>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Ops</strong> Input gagal<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <form action="{{ route('m_user.store') }}" method="POST">
+    <div class="float-right mt-3 ms-3">
+        <a class="btn btn-secondary" href="{{ route('m_user.index') }}"> Kembali</a>
+    </div>
 
-        @csrf
+    <div class="card-body">
+        <form method="post" action="{{ route('m_user.store') }}">
+            
+            @csrf
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Username:</strong>
-                <input type="text" name="username" class="form-control" placeholder="Masukkan username">
-            </div>
-        </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Input Username">
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>nama:</strong>
-                <input type="text" name="nama" class="form-control" placeholder="Masukkan nama">
+                    @error('username')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="nama">nama</label>
+                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Input Nama">
+
+                    @error('nama')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="password">password</label>
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Input Password">
+
+                    @error('password')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="level_id">level_id</label>
+                    <input type="number" name="level_id" class="form-control @error('level_id') is-invalid @enderror" id="level_id" placeholder="Input Level Id">
+
+                    @error('level_id')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
+
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Password:</strong>
-                <input type="password" name="password" class="form-control" placeholder="Masukkan password">
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Level_id:</strong>
-                <input type="number" name="level_id" class="form-control" placeholder="Masukkan Level">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
 @endsection

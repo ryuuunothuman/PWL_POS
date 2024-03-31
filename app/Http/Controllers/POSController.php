@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\m_userDataTable;
 use App\Models\m_user;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -12,10 +13,10 @@ class POSController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(m_userDataTable $dataTable)
     {
         $useri = m_user::all();
-        return view('m_user.index', compact('useri'));
+        return $dataTable->render('m_user.index');
     }
 
     /**
