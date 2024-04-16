@@ -2,8 +2,8 @@
 
 {{--Customize layout sections--}}
 @section('subtitle', 'M_User')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'M_User')
+@section('content_header_title', 'Hompppppe')
+@section('content_header_subtitle', 'M_Userrrrr')
 
 @section('content')
 <div class="container">
