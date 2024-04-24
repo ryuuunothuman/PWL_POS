@@ -4,13 +4,16 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LevelRequest extends FormRequest
+class LevelResourceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
+        /**
+         * because in our website, there isn't login verification, we just make this authorize process true. This without role in database, middleware, policy and gate that we usually use in authorization process
+         */
         return true;
     }
 
@@ -22,8 +25,8 @@ class LevelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'level_kode' => 'bail|unique:m_level|required',
-            'level_nama' => 'required'
+            'level_kode' => 'bail|required|unique:m_level|string|min:3|max:10',
+            'level_nama' => 'bail|required|string|max:100'
         ];
     }
 }
