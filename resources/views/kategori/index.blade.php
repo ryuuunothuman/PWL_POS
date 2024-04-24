@@ -1,23 +1,72 @@
-@extends('layouts.app')
-
-{{-- Customize layout sections --}}
-
-@section('subtitle', 'Kategori')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Kategori')
+@extends('layouts.template')
 
 @section('content')
-    <div class="container">
-        <div class="card">
-            <div class="card-header">Manage Kategori</div>
-            <div class="card-body">
-                {{ $dataTable->table() }}
-                <a class="btn btn-primary" href="{{ route('kategori.create') }}">+ Add Kategori</a>
-            </div>
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title">{{ $page->title }}</h3>
+        <div class="card-tools">
+            <a class="btn btn-sm btn-primary mt-1" href="{{ url('kategori/create') }}">Tambah</a>
         </div>
     </div>
+    <div class="card-body">
+        @if(session('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+        @elseif(session('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
+        @endif
+        <table class="table table-bordered table-striped table-hover table-sm" id="table_kategori">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kategori Kode</th>
+                <th>Kategori Nama</th>
+                <th>Aksi</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
 @endsection
+@push('css')
+@endpush
 
-@push('scripts')
-    {{ $dataTable->scripts() }}    
+@push('js')
+    <script>
+        $(document).ready(function() {
+            var dataKategori = $('#table_kategori').DataTable({
+                serverSide: true, // True if we want to use Server side processing
+                ajax: {
+                    "url": "{{ url('kategori/list') }}",
+                    "dataType": "json",
+                    "type": "POST",
+                },
+                columns: [
+                    {
+                        data: "kategori_id", // numbering from laravel datatables addIndexColumn() function
+                        className: "text-center",
+                        orderable: true,
+                        searchable: false
+                    },
+                    {
+                        data: "kategori_kode",
+                        className: "text-center",
+                        orderable: true,    // orderable: true, if we want this column is orderable
+                        searchable: true,   // searchable: true, if we want this column searchable
+                    },
+                    {
+                        data: "kategori_nama",
+                        className: "text-center",
+                        orderable: true,    // orderable: true, if we want this column is orderable
+                        searchable: true,   // searchable: true, if we want this column searchable
+                    },
+                    {
+                        data: "aksi",
+                        className: "text-center",
+                        orderable: false,	// orderable: false, if we want this column not orderable
+                        searchable: false	// searchable: false, if we want this column not searchable
+                    }
+                ]
+            });
+        });
+    </script>
 @endpush

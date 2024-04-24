@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KategoriResourceController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LevelResourceController;
 use App\Http\Controllers\POSController;
@@ -73,3 +74,6 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::resource('level', LevelResourceController::class);
 Route::post('level/list', [LevelResourceController::class, 'list']);
+
+Route::resource('kategori', KategoriResourceController::class);
+Route::post('kategori/list', [KategoriResourceController::class, 'list']);
