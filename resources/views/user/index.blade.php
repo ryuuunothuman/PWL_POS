@@ -17,6 +17,7 @@
             @if (session('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
+<<<<<<< HEAD
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group row">
@@ -32,6 +33,8 @@
                     </div>
                 </div>
             </div>
+=======
+>>>>>>> f149e681813f42dce131a7e4e4a81ea2e9fd04f4
             <table class="table table-bordered table-striped table-hover table-sm" id="table_user">
                 <thead>
                     <tr>
@@ -58,10 +61,14 @@
             ajax: {
                 "url": "{{ url('user/list') }}",
                 "datatype": "json",
+<<<<<<< HEAD
                 "type": "POST",
                 "data": function (d) {
                     d.level_id = $('#level_id').val();
                 }
+=======
+                "type": "POST"
+>>>>>>> f149e681813f42dce131a7e4e4a81ea2e9fd04f4
             },
             columns: [
                 {
@@ -92,11 +99,14 @@
                 }
             ]
         });
+<<<<<<< HEAD
 
         $('#level_id').on('change', function() {
             dataUser.ajax.reload();
         });
         
+=======
+>>>>>>> f149e681813f42dce131a7e4e4a81ea2e9fd04f4
     });
 </script>
 @endpush
