@@ -14,22 +14,6 @@
         @elseif(session('error'))
             <div class="alert alert-danger">{{session('error')}}</div>
         @endif
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Filter:</label>
-                    <div class="col-3">
-                        <select name="level_id" id="level_id" class="form-control" required>
-                            <option value="">- Semua -</option>
-                            @foreach ($levels as $item)
-                                <option value="{{ $item->level_id }}">{{ $item->level_nama }}</option>
-                            @endforeach
-                        </select>
-                        <small class="form-text text-muted">Level Nama</small>
-                    </div>
-                </div>
-            </div>
-        </div>
         <table class="table table-bordered table-striped table-hover table-sm" id="table_level">
             <thead>
             <tr>
@@ -49,7 +33,7 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            var dataUser = $('#table_level').DataTable({
+            var dataLevel = $('#table_level').DataTable({
                 serverSide: true, // True if we want to use Server side processing
                 ajax: {
                     "url": "{{ url('level/list') }}",
@@ -61,33 +45,30 @@
                 },
                 columns: [
                     {
-                        data: "DT_RowIndex", // numbering from laravel datatables addIndexColumn() function
+                        data: "level_id", // numbering from laravel datatables addIndexColumn() function
                         className: "text-center",
-                        orderable: false,
+                        orderable: true,
                         searchable: false
                     },
                     {
                         data: "level_kode",
-                        className: "",
+                        className: "text-center",
                         orderable: true,    // orderable: true, if we want this column is orderable
                         searchable: true,   // searchable: true, if we want this column searchable
                     },
                     {
                         data: "level_nama",
-                        className: "",
+                        className: "text-center",
                         orderable: true,    // orderable: true, if we want this column is orderable
                         searchable: true,   // searchable: true, if we want this column searchable
                     },
                     {
                         data: "aksi",
-                        className: "",
+                        className: "text-center",
                         orderable: false,	// orderable: false, if we want this column not orderable
                         searchable: false	// searchable: false, if we want this column not searchable
                     }
                 ]
-            });
-            $('#level_id').on('change', function() {
-                dataUser.ajax.reload();
             });
         });
     </script>

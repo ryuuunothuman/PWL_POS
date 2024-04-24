@@ -25,7 +25,7 @@ class LevelResourceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'level_kode' => 'bail|required|unique:m_level|string|min:3|max:10',
+            'level_kode' => 'bail|required|unique:m_level,level_kode, '.$this->route('level').',level_id|string|min:3|max:10',
             'level_nama' => 'bail|required|string|max:100'
         ];
     }
