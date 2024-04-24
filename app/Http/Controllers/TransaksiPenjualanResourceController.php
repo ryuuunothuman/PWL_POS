@@ -107,6 +107,10 @@ class TransaksiPenjualanResourceController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
+        $request->validate([
+            'penjualan_kode' => 'bail|required|unique:t_penjualan'
+        ]);
         $isKodePenjualan = PenjualanModel::where('penjualan_kode', $request->penjualan_kode)->first();
         $isPengelola = PenjualanModel::where('user_id', $request->user_id)->first();
         if ($isKodePenjualan and $isPengelola) {

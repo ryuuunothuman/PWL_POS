@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StokResourceRequest;
 use App\Models\BarangModel;
+use App\Models\PenjualanModel;
 use App\Models\StokModel;
 use App\Models\UserModel;
 use Illuminate\Database\QueryException;
@@ -119,7 +120,18 @@ class StokResourceController extends Controller
         /**
          * Retrieve a portion of the validated input data...
          */
-        $validated = $request->safe()->except('stok_id');
+        $validated = $request->safe()->except('created_at, update_at');
+
+        $isBarang = StokModel::where('barang_id', $validated['barang_id'])->first();
+
+        if ($isBarang) {
+            $oldJumlah = $isBarang['stok_jumlah'];
+            StokModel::where('stok_id', $isBarang['stok_id'])->update([
+                'stok_tanggal' => $validated['stok_tanggal'],
+                'stok_jumlah' => $oldJumlah + $validated['stok_jumlah']
+            ]);
+            return redirect('/stok')->with('success', 'Data stok berhasil disimpan dan diperbarui');
+        }
 
         /**
          * Created row m_stok Table data, base request form data
