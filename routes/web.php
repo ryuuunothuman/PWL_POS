@@ -6,6 +6,7 @@ use App\Http\Controllers\KategoriResourceController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LevelResourceController;
 use App\Http\Controllers\POSController;
+use App\Http\Controllers\StokResourceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -37,11 +38,20 @@ Route::group(['prefix' => 'user'], function () {
 Route::resource('level', LevelResourceController::class);
 Route::post('level/list', [LevelResourceController::class, 'list']);
 
+/**
+ * Route for Resource in kategori table: create, store, show, edit, update, and destroy, also with list that return JsonResponse
+ */
 Route::resource('kategori', KategoriResourceController::class);
 Route::post('kategori/list', [KategoriResourceController::class, 'list']);
 
 /**
- * Route for Resource in Level table: create, store, show, edit, update, and destroy, also with list that return JsonResponse
+ * Route for Resource in Barang table: create, store, show, edit, update, and destroy, also with list that return JsonResponse
  */
 Route::resource('barang', BarangResourceController::class);
 Route::post('barang/list', [BarangResourceController::class, 'list']);
+
+/**
+ * Route for Resource in stok table: create, store, show, edit, update, and destroy, also with list that return JsonResponse
+ */
+Route::resource('stok', StokResourceController::class);
+Route::post('stok/list', [StokResourceController::class, 'list']);
