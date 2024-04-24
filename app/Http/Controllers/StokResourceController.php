@@ -137,12 +137,12 @@ class StokResourceController extends Controller
         $stok = StokModel::with('barang', 'user')->find($id);
 
         $breadcrumb = (object)[
-            'title' => 'Detail Barang',
-            'list' => ['Home', 'Barang', 'Detail']
+            'title' => 'Detail Stok',
+            'list' => ['Home', 'Stok', 'Detail']
         ];
 
         $page = (object)[
-            'title' => 'Detail Barang'
+            'title' => 'Detail Stok'
         ];
 
         /**

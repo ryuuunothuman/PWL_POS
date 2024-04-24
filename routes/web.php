@@ -7,6 +7,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LevelResourceController;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\StokResourceController;
+use App\Http\Controllers\TransaksiPenjualanResourceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -55,3 +56,10 @@ Route::post('barang/list', [BarangResourceController::class, 'list']);
  */
 Route::resource('stok', StokResourceController::class);
 Route::post('stok/list', [StokResourceController::class, 'list']);
+
+
+/**
+ * Route for Resource Transaksi Penjualan (t_penjualan and t_penjualan_detail table): create, store, show, edit, update, and destroy, also with list that return JsonResponse
+ */
+Route::resource('penjualan', TransaksiPenjualanResourceController::class);
+Route::post('penjualan/list', [TransaksiPenjualanResourceController::class, 'list']);
