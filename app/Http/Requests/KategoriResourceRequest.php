@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class KategoriResourceRequest extends FormRequest
 {
@@ -24,9 +26,24 @@ class KategoriResourceRequest extends FormRequest
      */
     public function rules(): array
     {
+        if (in_array($this->getMethod(), ['PUT', 'PATCH'])) {
+            return [
+                'kategori_kode' => 'bail|required_without_all:kategori_nama|unique:m_kategori|string|min:4|max:10',
+                'kategori_nama' => 'bail|required_without_all:kategori_kode|string|max:100'
+            ];
+        }
         return [
             'kategori_kode' => 'bail|required|unique:m_kategori,kategori_kode, '.$this->route('kategori').',kategori_id|string|min:4|max:10',
             'kategori_nama' => 'bail|required|string|max:100'
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'message' => 'Kategori Validation data failed',
+            'errors' => $validator->errors(),
+        ], 422));
     }
 }
